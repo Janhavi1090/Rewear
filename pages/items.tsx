@@ -48,13 +48,29 @@ export async function getServerSideProps() {
   await connectToDatabase();
   const rawItems = await Item.find({ status: "available" }).lean();
 
-  const items = rawItems.map((i: any) => ({
-    ...i,
+const items = rawItems.map((i: any) => {
+  return {
     _id: i._id.toString(),
+    title: i.title || "",
     image: i.image || "/placeholder.jpg",
-    createdAt: i.createdAt?.toISOString() || null,
-    updatedAt: i.updatedAt?.toISOString() || null,
-  }));
+    createdAt: i.createdAt ? new Date(i.createdAt).toISOString() : null,
+    updatedAt: i.updatedAt ? new Date(i.updatedAt).toISOString() : null,
+    status: i.status || "available",
+    uploaderEmail: i.uploaderEmail || "unknown",
+    tags: i.tags || [],
+    swapRequests: Array.isArray(i.swapRequests)
+      ? i.swapRequests.map((req: any) => ({
+          email: req.email || "unknown",
+          requestedAt: req.requestedAt
+            ? new Date(req.requestedAt).toISOString()
+            : null,
+        }))
+      : [],
+  };
+});
+
+console.log("items JSON", JSON.stringify(items, null, 2));
+
 
   return { props: { items } };
 }

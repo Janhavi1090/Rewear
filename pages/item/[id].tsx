@@ -104,8 +104,9 @@ const plainItem = rawItem.toObject();
     status: plainItem.status || "available",
     swapRequests: (plainItem.swapRequests || []).map((req: any) => ({
       email: req.email,
-      requestedAt: req.requestedAt.toString(), // optional
+      requestedAt: req.requestedAt ? req.requestedAt.toString() : null,
     })),
+    
   };
 
   const isOwner = session?.user?.email === item.uploaderEmail;
