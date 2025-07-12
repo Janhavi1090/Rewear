@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import "./dashboard.css";
 
 type Item = {
   _id: string;
@@ -19,47 +20,46 @@ export default function Dashboard() {
       .then((data) => setItems(data));
   }, []);
 
-  if (status === "loading") return <p className="p-8">Loading session...</p>;
-  if (!session) return <p className="p-8">You must be logged in to view this page.</p>;
-
+  if (status === "loading") return <p className="loading">Loading session...</p>;
+  if (!session)
+    return (
+      <div className="login-message">
+        <div className="login-box">
+          <h2>🚪 Hold up, fashionista!</h2>
+          <p>You need to be logged in to access your ✨ closet dashboard ✨.</p>
+          <Link href="/login" className="login-btn">Login or Register</Link>
+        </div>
+      </div>
+    );
+  
   const user = session.user;
 
   return (
-    <div className="min-h-screen p-8 bg-gray-50">
-      <h1 className="text-2xl font-bold mb-4">
-        Welcome, {user?.name || user?.email || "ReWear User"}
+    <div className="dashboard-page">
+      <h1 className="dashboard-title">
+        Welcome, <span className="username">{user?.name || user?.email || "ReWear Babe"}</span>
       </h1>
 
-      <h2 className="text-xl mb-2">Your Uploaded Items</h2>
+      <h2 className="section-title">🛍️ Your Closet Collection</h2>
+
       {items.length === 0 ? (
-        <p>
+        <p className="empty-msg">
           No items listed yet.{" "}
-          <Link href="/item/new" className="text-blue-600 underline">
-            Add one
-          </Link>.
+          <Link href="/item/new" className="add-link">
+            Add one!
+          </Link>
         </p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="item-grid">
           {items.map((item) => (
-            <div key={item._id} className="bg-white p-4 rounded shadow">
-              <img
-                src={item.image}
-                alt={item.title}
-                className="w-full h-48 object-cover rounded mb-2"
-              />
-              <h3 className="font-semibold">{item.title}</h3>
-              <p
-                className={`text-sm ${
-                  item.status === "available" ? "text-green-600" : "text-red-500"
-                }`}
-              >
-                {item.status}
+            <div key={item._id} className="item-card">
+              <img src={item.image} alt={item.title} className="item-img" />
+              <h3 className="item-name">{item.title}</h3>
+              <p className={`item-status ${item.status}`}>
+                {item.status === "available" ? "✅ Available" : "❌ Swapped"}
               </p>
-              <Link
-                href={`/item/${item._id}`}
-                className="text-blue-500 underline text-sm mt-2 inline-block"
-              >
-                View Details
+              <Link href={`/item/${item._id}`} className="details-link">
+                View Details →
               </Link>
             </div>
           ))}

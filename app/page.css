@@ -1,0 +1,157 @@
+:root {
+    --hot-pink: #ff7eb9;
+    --bubblegum: #ffc7e3;
+    --lavender: #e3d1ff;
+    --white: #fff;
+    --black: #222;
+    --gray: #fefefe;
+  }
+  
+  body {
+    margin: 0;
+    font-family: "Comic Sans MS", "Poppins", cursive;
+    background-color: var(--gray);
+    background-image: url("https://www.transparenttextures.com/patterns/graphy.png");
+  }
+  
+  .homepage {
+    padding: 0;
+    overflow-x: hidden;
+  }
+  
+  .announcement-bar {
+    background-color: var(--hot-pink);
+    color: white;
+    text-align: center;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .hero {
+    padding: 3rem 1rem 2rem;
+    text-align: center;
+  }
+  
+  .headline {
+    font-size: 2.8rem;
+    font-weight: bold;
+    margin: 0;
+    color: var(--black);
+  }
+  
+  .brand {
+    color: var(--hot-pink);
+    font-style: italic;
+  }
+  
+  .subtext {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    color: #555;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .button-group {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .btn {
+    padding: 0.7rem 1.4rem;
+    border-radius: 999px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+  }
+  
+  .btn.dark {
+    background-color: black;
+    color: white;
+  }
+  
+  .btn.pink {
+    background-color: var(--hot-pink);
+    color: white;
+  }
+  
+  .btn.outline {
+    border: 2px solid var(--hot-pink);
+    color: var(--hot-pink);
+    background: transparent;
+  }
+  
+  .btn:hover {
+    transform: scale(1.05);
+  }
+  
+  .section-heading {
+    text-align: center;
+    font-size: 1.8rem;
+    margin: 3rem 0 1rem;
+    font-weight: bold;
+  }
+  
+  .items-grid {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding: 0 1rem;
+  }
+  
+  .item-card {
+    width: 200px;
+    background-color: white;
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transform: rotate(-1deg);
+    transition: all 0.3s ease;
+  }
+  
+  .item-card:hover {
+    transform: rotate(0deg) scale(1.03);
+  }
+  
+  .image-box {
+    background-color: var(--lavender);
+    height: 140px;
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .item-title {
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+  
+  .item-subtext {
+    font-size: 0.85rem;
+    color: #666;
+  }
+  
+  .why {
+    text-align: center;
+    margin: 3rem 1rem;
+  }
+  
+  .why-heading {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+  
+  .why-text {
+    font-size: 1rem;
+    color: #555;
+    max-width: 600px;
+    margin: auto;
+  }
+  

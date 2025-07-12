@@ -1,0 +1,119 @@
+:root {
+    --soft-pink: #ffe0ec;
+    --lavender: #e6e6fa;
+    --pastel-purple: #dab6f3;
+    --highlight: #ff7eb9;
+    --gray: #444;
+  }
+  
+  .dreamy-wrapper {
+    min-height: 100vh;
+    background: var(--soft-pink);
+    background-image: url("https://www.transparenttextures.com/patterns/pink-paper.png");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .emoji {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.5;
+    animation: floaty 5s ease-in-out infinite;
+  }
+  
+  .emoji-1 { top: 20px; left: 40px; animation-delay: 0s; }
+  .emoji-2 { bottom: 50px; right: 60px; animation-delay: 1.5s; }
+  .emoji-3 { top: 50%; left: 10%; animation-delay: 3s; }
+  
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .dreamy-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1000px;
+    width: 100%;
+    background: white;
+    border-radius: 2rem;
+    padding: 2rem;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+    position: relative;
+    gap: 2rem;
+  }
+  
+  @media (max-width: 768px) {
+    .dreamy-card {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .image-panel {
+    width: 100%;
+  }
+  
+  .dreamy-image {
+    border-radius: 1rem;
+    border: 3px dashed var(--lavender);
+  }
+  
+  .info-panel h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--highlight);
+  }
+  
+  .desc {
+    color: #666;
+    margin-bottom: 1rem;
+  }
+  
+  .meta p {
+    font-size: 0.95rem;
+    color: #555;
+    margin: 0.3rem 0;
+  }
+  
+  .meta .green {
+    color: #27ae60;
+    font-weight: 600;
+  }
+  
+  .meta .red {
+    color: #c0392b;
+    font-weight: 600;
+  }
+  
+  .note {
+    margin-top: 1rem;
+    color: #f39c12;
+    font-size: 0.9rem;
+  }
+  
+  .dreamy-btns {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .dreamy-btns button {
+    background-color: var(--highlight);
+    color: white;
+    border: none;
+    border-radius: 999px;
+    padding: 0.6rem 1.4rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  
+  .dreamy-btns button:hover {
+    transform: scale(1.03);
+    background-color: #ec5aa4;
+  }
+      

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import "./add-item.css";
 
 export default function AddItem() {
   const [form, setForm] = useState({
@@ -46,34 +47,33 @@ export default function AddItem() {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gray-50">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white shadow-lg p-6 rounded-md w-full max-w-xl space-y-4"
-      >
-        <h1 className="text-2xl font-bold text-center">Add New Item</h1>
-
-        <input type="text" name="title" placeholder="Title" onChange={handleChange} className="input" required />
-        <textarea name="description" placeholder="Description" onChange={handleChange} className="input" required />
-
-        <div className="grid grid-cols-2 gap-4">
-          <input type="text" name="category" placeholder="Category" onChange={handleChange} className="input" />
-          <input type="text" name="type" placeholder="Type (e.g. T-shirt, Jeans)" onChange={handleChange} className="input" />
-          <input type="text" name="size" placeholder="Size" onChange={handleChange} className="input" />
-          <input type="text" name="condition" placeholder="Condition (e.g. Like New)" onChange={handleChange} className="input" />
+    <div className="add-wrapper">
+      <div className="emoji emoji-1">📸</div>
+      <div className="emoji emoji-2">🧺</div>
+      <div className="emoji emoji-3">🌸</div>
+  
+      <form onSubmit={handleSubmit} className="add-card">
+        <h1>Add New Item</h1>
+  
+        <input type="text" name="title" placeholder="Title" onChange={handleChange} required />
+        <textarea name="description" placeholder="Description" onChange={handleChange} required />
+  
+        <div className="form-grid">
+          <input type="text" name="category" placeholder="Category" onChange={handleChange} />
+          <input type="text" name="type" placeholder="Type (e.g. T-shirt, Jeans)" onChange={handleChange} />
+          <input type="text" name="size" placeholder="Size" onChange={handleChange} />
+          <input type="text" name="condition" placeholder="Condition (e.g. Like New)" onChange={handleChange} />
         </div>
-
-        <input type="text" name="tags" placeholder="Tags (comma separated)" onChange={handleChange} className="input" />
-
-        <input type="file" accept="image/*" onChange={handleImage} className="input" />
-
+  
+        <input type="text" name="tags" placeholder="Tags (comma separated)" onChange={handleChange} />
+  
+        <input type="file" accept="image/*" onChange={handleImage} className="file-input" />
+  
         {preview && (
-          <Image src={preview} alt="Preview" width={300} height={200} className="mx-auto rounded" />
+          <Image src={preview} alt="Preview" width={300} height={200} className="preview" />
         )}
-
-        <button type="submit" className="bg-black text-white w-full py-2 rounded hover:bg-gray-800">
-          Submit Item
-        </button>
+  
+        <button type="submit">✨ Submit Item</button>
       </form>
     </div>
   );

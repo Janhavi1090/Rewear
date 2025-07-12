@@ -1,0 +1,114 @@
+:root {
+  --pink: #ffd6e8;
+  --lavender: #e9d8fd;
+  --hot-pink: #ff7eb9;
+  --off-white: #fffafc;
+  --gray: #444;
+}
+
+.scrapbook-container {
+  min-height: 100vh;
+  background: var(--off-white);
+  background-image: url("https://www.transparenttextures.com/patterns/graphy.png");
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 3rem 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.tab {
+  background: var(--lavender);
+  padding: 0.8rem 1.5rem;
+  border-radius: 1rem 1rem 0 0;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--gray);
+  border-bottom: 2px solid transparent;
+}
+
+.tab.active {
+  background: var(--pink);
+  border-bottom: 2px solid var(--hot-pink);
+}
+
+.scrapbook-card {
+  background: white;
+  padding: 2rem 2.5rem;
+  border-radius: 1.25rem;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.scrapbook-card::before,
+.scrapbook-card::after {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: url('https://cdn-icons-png.flaticon.com/512/10745/10745531.png') no-repeat center/contain;
+  opacity: 0.4;
+}
+
+.scrapbook-card::before {
+  top: -20px;
+  left: -20px;
+}
+
+.scrapbook-card::after {
+  bottom: -20px;
+  right: -20px;
+}
+
+h2 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  color: var(--hot-pink);
+}
+
+.note {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 1.5rem;
+}
+
+.auth-error {
+  color: red;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.scrap-form input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  margin-bottom: 1rem;
+  border: 2px dashed var(--lavender);
+  border-radius: 0.8rem;
+  background: #fafafa;
+}
+
+.scrap-form button {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 999px;
+  background: var(--hot-pink);
+  color: white;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.scrap-form button:hover {
+  background: #ec5aa4;
+}

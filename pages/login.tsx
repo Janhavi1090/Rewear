@@ -1,7 +1,7 @@
-// pages/login.tsx
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
+import "./scrapbook.css";
 
 export default function Login() {
   const router = useRouter();
@@ -25,7 +25,7 @@ export default function Login() {
     });
 
     if (res?.error) {
-      setError("Invalid email or password");
+      setError("🚫 Invalid email or password");
       setLoading(false);
     } else {
       router.replace("/dashboard");
@@ -33,42 +33,39 @@ export default function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50">
-      <form
-        onSubmit={handleLogin}
-        className="bg-white shadow-md rounded-lg p-8 w-full max-w-md space-y-4"
-      >
-        <h2 className="text-2xl font-bold">Login to ReWear</h2>
+    <div className="scrapbook-container">
+      <div className="tabs">
+        <a href="/login" className="tab active">📁 Login</a>
+        <a href="/register" className="tab">📂 Register</a>
+      </div>
 
-        {error && <p className="text-red-600">{error}</p>}
+      <div className="scrapbook-card">
+        <h2>🔐 Unlock Your Closet</h2>
+        <p className="note">Welcome back, style queen ✨</p>
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleChange}
-          className="w-full border px-4 py-2 rounded"
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={handleChange}
-          className="w-full border px-4 py-2 rounded"
-          required
-        />
-        <button
-          type="submit"
-          className="w-full bg-black text-white py-2 rounded hover:bg-gray-800"
-          disabled={loading}
-        >
-          {loading ? "Logging in..." : "Login"}
-        </button>
-        <p className="text-sm text-center text-gray-600">
-          Don’t have an account? <a href="/register" className="underline">Register</a>
-        </p>
-      </form>
+        {error && <p className="auth-error">{error}</p>}
+
+        <form onSubmit={handleLogin} className="scrap-form">
+          <input
+            type="email"
+            name="email"
+            placeholder="📧 Email"
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="🔐 Password"
+            onChange={handleChange}
+            required
+          />
+
+          <button type="submit" disabled={loading}>
+            {loading ? "✨ Logging in..." : "Login"}
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

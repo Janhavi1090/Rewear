@@ -1,0 +1,179 @@
+:root {
+    --light-pink: #fff0f6;
+    --hot-pink: #ff7eb9;
+    --lavender: #e9d8fd;
+    --gray: #444;
+  }
+  
+  .nav-container {
+    background: var(--light-pink);
+    backdrop-filter: blur(6px);
+    border-bottom: 2px dashed #ffd6e8;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.08);
+  }
+  
+  .nav-inner {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .logo {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--hot-pink);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: transform 0.2s ease;
+  }
+  
+  .logo:hover {
+    transform: scale(1.05);
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: var(--gray);
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+  
+  .nav-links a:hover {
+    color: var(--hot-pink);
+  }
+  
+  .nav-auth {
+    display: flex;
+    gap: 0.8rem;
+  }
+  
+  .nav-btn {
+    padding: 0.5rem 1.2rem;
+    border-radius: 999px;
+    background-color: white;
+    color: var(--gray);
+    text-decoration: none;
+    font-weight: 600;
+    border: 1px dashed var(--lavender);
+    transition: all 0.2s ease;
+  }
+  
+  .nav-btn:hover {
+    background-color: #f9e6ff;
+    color: var(--hot-pink);
+  }
+  
+  .nav-btn.primary {
+    background-color: var(--hot-pink);
+    color: white;
+    border: none;
+  }
+  
+  .nav-btn.primary:hover {
+    background-color: #ec5aa4;
+  }
+  
+  .nav-auth button {
+    background-color: white;
+    color: var(--gray);
+    font-weight: 600;
+    border-radius: 999px;
+    padding: 0.5rem 1.2rem;
+    border: 1px dashed var(--lavender);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .nav-auth button:hover {
+    background-color: #f9e6ff;
+    color: var(--hot-pink);
+  }
+
+  .user-name {
+    font-weight: 500;
+    margin-right: 0.6rem;
+    color: var(--gray);
+  }
+
+  /* Avatar + Dropdown Styles */
+.dropdown-wrapper {
+    position: relative;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+    transition: background 0.2s ease;
+  }
+  
+  .user-info:hover {
+    background-color: #fce3f1;
+  }
+  
+  .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid #ffd6e8;
+    object-fit: cover;
+  }
+  
+  .user-name {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--gray);
+  }
+  
+  .dropdown {
+    position: absolute;
+    top: 130%;
+    right: 0;
+    background: white;
+    border: 1px dashed #ffd6e8;
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    min-width: 160px;
+  }
+  
+  .dropdown a,
+  .dropdown button {
+    text-align: left;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #444;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    text-decoration: none;
+  }
+  
+  .dropdown a:hover,
+  .dropdown button:hover {
+    color: var(--hot-pink);
+  }
+  
+  
+  

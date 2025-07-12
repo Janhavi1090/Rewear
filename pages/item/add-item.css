@@ -1,0 +1,110 @@
+:root {
+    --soft-pink: #ffe0ec;
+    --lavender: #f3e8ff;
+    --highlight: #ff7eb9;
+    --input-bg: #fff8fc;
+    --gray: #444;
+  }
+  
+  .add-wrapper {
+    min-height: 100vh;
+    background: var(--soft-pink);
+    background-image: url("https://www.transparenttextures.com/patterns/pink-paper.png");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .emoji {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.5;
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .emoji-1 { top: 20px; left: 40px; animation-delay: 0s; }
+  .emoji-2 { bottom: 30px; right: 40px; animation-delay: 2s; }
+  .emoji-3 { top: 50%; left: 10%; animation-delay: 4s; }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .add-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 2rem;
+    max-width: 700px;
+    width: 100%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .add-card h1 {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--highlight);
+    margin-bottom: 1rem;
+  }
+  
+  .add-card input,
+  .add-card textarea {
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    border: 2px dashed var(--lavender);
+    background: var(--input-bg);
+    outline: none;
+    font-size: 0.95rem;
+    color: var(--gray);
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+  }
+  
+  .file-input {
+    padding: 0.6rem;
+    background: transparent;
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  .preview {
+    display: block;
+    margin: auto;
+    border-radius: 1rem;
+    margin-top: 1rem;
+    border: 2px dashed var(--lavender);
+  }
+  
+  .add-card button {
+    background: var(--highlight);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  
+  .add-card button:hover {
+    background: #ec5aa4;
+    transform: scale(1.03);
+  }
+  

@@ -4,9 +4,12 @@
 
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --hot-pink: #ff7eb9;
+  --lavender: #e3d1ff;
+  --soft-white: #fffafc;
+  --black: #222;
 }
+
 
 @theme inline {
   --color-background: var(--background);
@@ -21,6 +24,13 @@
     --foreground: #ededed;
   }
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+  @apply font-pop bg-blush text-gray-800;
+}
+
 
 body {
   background: var(--background);

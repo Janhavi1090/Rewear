@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import Email from "next-auth/providers/email";
 
 const ItemSchema = new mongoose.Schema({
   title: String,
@@ -11,6 +12,7 @@ const ItemSchema = new mongoose.Schema({
   image: String,
   uploaderEmail: String,
   status: { type: String, default: "available" }, // available | swapped
+  swapRequests: [{ email: String, requestedAt: Date}]
 }, { timestamps: true });
 
 export default mongoose.models.Item || mongoose.model("Item", ItemSchema);
