@@ -28,7 +28,7 @@ export default function Login() {
       setError("Invalid email or password");
       setLoading(false);
     } else {
-      router.push("/dashboard");
+      router.replace("/dashboard");
     }
   };
 

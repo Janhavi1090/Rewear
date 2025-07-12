@@ -1,6 +1,6 @@
 // pages/dashboard.tsx
 import { getServerSession } from "next-auth";
-import { NextAuthOptions } from "./api/auth/[...nextauth]";
+import { authOptions } from "./api/auth/[...nextauth]";
 import { GetServerSideProps } from "next";
 import { signOut } from "next-auth/react";
 
@@ -30,20 +30,25 @@ export default function Dashboard({ user }: DashboardProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getServerSession(context.req, context.res, authOptions);
-
-  if (!session) {
+    const session = await getServerSession(context.req, context.res, authOptions);
+  
+    if (!session) {
+      return {
+        redirect: {
+          destination: "/login",
+          permanent: false,
+        },
+      };
+    }
+  
     return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
+      props: {
+        user: {
+          name: session.user?.name ?? null,
+          email: session.user?.email ?? null,
+          image: session.user?.image ?? null, // <-- ✅ THIS LINE FIXES THE ERROR
+        },
       },
     };
-  }
-
-  return {
-    props: {
-      user: session.user,
-    },
   };
-};
+  
