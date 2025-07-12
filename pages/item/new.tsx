@@ -19,6 +19,10 @@ export default function AddItem() {
 
   const handleImage = (e: any) => {
     const file = e.target.files[0];
+    if (file.size > 4 * 1024 * 1024) {
+      alert("Image too large! Please select a file under 4MB.");
+      return;
+    }
     const reader = new FileReader();
     reader.onloadend = () => {
       setForm({ ...form, image: reader.result as string });

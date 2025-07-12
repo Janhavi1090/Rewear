@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next";
-import { connectToDatabase } from "@/lib/mongodb";
+import connectToDatabase from "../../lib/mongodb";
 import Item from "@/models/Item";
 import Image from "next/image";
 import { getServerSession } from "next-auth";

@@ -28,7 +28,7 @@ export default function Navbar() {
             <div className="dropdown-wrapper">
               <div className="user-info" onClick={() => setOpenDropdown(!openDropdown)}>
                 <img
-                  src={session.user?.image || "/default-avatar.png"}
+                  src={session.user?.image || "/default-avatar.jpg"}
                   alt="Profile"
                   className="avatar"
                 />

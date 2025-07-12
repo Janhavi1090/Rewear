@@ -1,7 +1,7 @@
 // pages/api/register.ts
 import type { NextApiRequest, NextApiResponse } from "next";
-import { connectToDatabase } from "@/lib/mongodb";
-import User from "@/models/User";
+import connectToDatabase from "../../lib/mongodb";
+import User from "../../models/User";
 import bcrypt from "bcryptjs";
 
 export default async function handler(

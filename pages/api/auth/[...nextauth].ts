@@ -6,7 +6,7 @@ import User from "../../../models/User";
 import bcrypt from "bcryptjs";
 import type { NextAuthOptions } from "next-auth";
 
-export const authOptions : NextAuthOptions= {
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -20,7 +20,6 @@ export const authOptions : NextAuthOptions= {
         }
 
         await connectToDatabase();
-
         const user = await User.findOne({ email: credentials.email });
         if (!user) {
           throw new Error("User not found");
@@ -39,15 +38,38 @@ export const authOptions : NextAuthOptions= {
       },
     }),
   ],
+
   session: {
     strategy: "jwt",
   },
+
   pages: {
     signIn: "/login",
     signOut: "/",
   },
+
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.email = user.email;
+        token.name = user.name; // ✅ this line is key
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (token) {
+        session.user.id = token.id;
+        session.user.email = token.email;
+        session.user.name = token.name; // ✅ this makes user.name available in your frontend
+      }
+      return session;
+    },
+  },
+
   secret: process.env.NEXTAUTH_SECRET,
 };
+
 
 
 const handler = NextAuth(authOptions);

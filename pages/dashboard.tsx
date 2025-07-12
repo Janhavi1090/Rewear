@@ -59,7 +59,7 @@ export default function Dashboard() {
   return (
     <div className="dashboard-page">
       <h1 className="dashboard-title">
-        Welcome, <span className="username">{user?.name || user?.email || "ReWear Babe"}</span>
+        Welcome, <span className="username">{user?.name || "ReWear Babe"}</span>
       </h1>
 
       <h2 className="section-title">🛍️ Your Closet Collection</h2>

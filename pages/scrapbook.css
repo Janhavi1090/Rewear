@@ -112,3 +112,32 @@ h2 {
 .scrap-form button:hover {
   background: #ec5aa4;
 }
+
+.otp-box {
+  margin-bottom: 1rem;
+  text-align: left;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.otp-input {
+  margin-top: 0.4rem;
+  width: 100%;
+  padding: 0.6rem;
+  font-size: 1rem;
+  border: 2px dashed var(--hot-pink);
+  border-radius: 0.75rem;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 0.2rem;
+  background-color: #fffafc;
+}
+
+.resend-btn {
+  background: none;
+  color: var(--hot-pink);
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 600;
+}

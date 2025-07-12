@@ -5,8 +5,8 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./auth/[...nextauth]";
 import connectToDatabase from "../../lib/mongodb";
-import Item from "@/models/Item";
-import User from "@/models/User";
+import Item from "../../models/Item";
+import User from "../../models/User";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") return res.status(405).end();
