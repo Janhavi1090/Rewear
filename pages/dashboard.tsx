@@ -1,54 +1,70 @@
-// pages/dashboard.tsx
-import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]";
-import { GetServerSideProps } from "next";
-import { signOut } from "next-auth/react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useSession } from "next-auth/react";
 
-type DashboardProps = {
-  user: {
-    name?: string;
-    email?: string;
-  };
+type Item = {
+  _id: string;
+  title: string;
+  image: string;
+  status: string;
 };
 
-export default function Dashboard({ user }: DashboardProps) {
+export default function Dashboard() {
+  const { data: session, status } = useSession();
+  const [items, setItems] = useState<Item[]>([]);
+
+  useEffect(() => {
+    fetch("/api/items/user")
+      .then((res) => res.json())
+      .then((data) => setItems(data));
+  }, []);
+
+  if (status === "loading") return <p className="p-8">Loading session...</p>;
+  if (!session) return <p className="p-8">You must be logged in to view this page.</p>;
+
+  const user = session.user;
+
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50">
-      <div className="bg-white p-8 rounded shadow-md w-full max-w-lg text-center">
-        <h1 className="text-2xl font-bold mb-4">Welcome, {user.name || user.email} 👋</h1>
-        <p className="text-gray-600 mb-4">You're now in your ReWear dashboard.</p>
-        
-        <button
-          onClick={() => signOut({ callbackUrl: "/login" })}
-          className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded"
-        >
-          Logout
-        </button>
-      </div>
+    <div className="min-h-screen p-8 bg-gray-50">
+      <h1 className="text-2xl font-bold mb-4">
+        Welcome, {user?.name || user?.email || "ReWear User"}
+      </h1>
+
+      <h2 className="text-xl mb-2">Your Uploaded Items</h2>
+      {items.length === 0 ? (
+        <p>
+          No items listed yet.{" "}
+          <Link href="/item/new" className="text-blue-600 underline">
+            Add one
+          </Link>.
+        </p>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {items.map((item) => (
+            <div key={item._id} className="bg-white p-4 rounded shadow">
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full h-48 object-cover rounded mb-2"
+              />
+              <h3 className="font-semibold">{item.title}</h3>
+              <p
+                className={`text-sm ${
+                  item.status === "available" ? "text-green-600" : "text-red-500"
+                }`}
+              >
+                {item.status}
+              </p>
+              <Link
+                href={`/item/${item._id}`}
+                className="text-blue-500 underline text-sm mt-2 inline-block"
+              >
+                View Details
+              </Link>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-    const session = await getServerSession(context.req, context.res, authOptions);
-  
-    if (!session) {
-      return {
-        redirect: {
-          destination: "/login",
-          permanent: false,
-        },
-      };
-    }
-  
-    return {
-      props: {
-        user: {
-          name: session.user?.name ?? null,
-          email: session.user?.email ?? null,
-          image: session.user?.image ?? null, // <-- ✅ THIS LINE FIXES THE ERROR
-        },
-      },
-    };
-  };
-  
