@@ -1,24 +1,44 @@
 import Link from "next/link";
 import Image from "next/image";
-import { connectToDatabase } from "@/lib/mongodb";
+import connectToDatabase from '../lib/mongodb';
 import Item from "@/models/Item";
+import "./browse.css"; 
 
 export default function BrowseItems({ items }: any) {
+  const handleSurpriseSwap = () => {
+    const random = items[Math.floor(Math.random() * items.length)];
+    if (random) window.location.href = `/item/${random._id}`;
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <h1 className="text-2xl font-bold mb-6 text-center">📦 Browse Available Items</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+    <div className="browse-wrapper">
+      <h1>🎀 Browse Available Items</h1>
+
+      <div className="grid-gallery">
         {items.map((item: any) => (
-          <Link key={item._id} href={`/item/${item._id}`} className="bg-white rounded shadow hover:shadow-lg transition">
-            <div>
-              <Image src={item.image} alt={item.title} width={400} height={300} className="rounded-t w-full h-48 object-cover" />
-              <div className="p-4">
-                <h2 className="text-lg font-bold">{item.title}</h2>
-                <p className="text-sm text-gray-500">{item.category}</p>
-              </div>
+          <Link key={item._id} href={`/item/${item._id}`} className="card">
+            <div className="img-wrap">
+              <Image
+                src={item.image}
+                alt={item.title}
+                width={400}
+                height={300}
+                className="item-img"
+              />
+              <span className="tap-to-swap">🔄 Tap to Swap</span>
+            </div>
+            <div className="card-content">
+              <h2>{item.title}</h2>
+              <p>{item.category}</p>
             </div>
           </Link>
         ))}
+      </div>
+
+      <div className="surprise-btn-wrapper">
+        <button className="surprise-btn" onClick={handleSurpriseSwap}>
+          🎁 Surprise Me!
+        </button>
       </div>
     </div>
   );
@@ -32,6 +52,8 @@ export async function getServerSideProps() {
     ...i,
     _id: i._id.toString(),
     image: i.image || "/placeholder.jpg",
+    createdAt: i.createdAt?.toISOString() || null,
+    updatedAt: i.updatedAt?.toISOString() || null,
   }));
 
   return { props: { items } };

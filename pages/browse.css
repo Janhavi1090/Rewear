@@ -1,0 +1,114 @@
+:root {
+    --soft-pink: #ffe0ec;
+    --highlight: #ff7eb9;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --lavender: #f6e9ff;
+  }
+  
+  .browse-wrapper {
+    min-height: 100vh;
+    background: var(--soft-pink);
+    background-image: url("https://www.transparenttextures.com/patterns/pink-paper.png");
+    padding: 3rem 2rem;
+  }
+  
+  .browse-wrapper h1 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--highlight);
+    margin-bottom: 2rem;
+  }
+  
+  .grid-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  
+  .card {
+    background: white;
+    border: 3px dashed var(--lavender);
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 10px 18px var(--shadow);
+    position: relative;
+    transition: transform 0.2s ease;
+  }
+  
+  .card:hover {
+    transform: scale(1.03);
+  }
+  
+  .img-wrap {
+    position: relative;
+  }
+  
+  .item-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .tap-to-swap {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: #fff0f6;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 999px;
+    border: 1px dashed #ffb6d9;
+    color: #c2185b;
+    box-shadow: 2px 2px 8px var(--shadow);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .card:hover .tap-to-swap {
+    opacity: 1;
+  }
+  
+  .card-content {
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .card-content h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #333;
+  }
+  
+  .card-content p {
+    font-size: 0.85rem;
+    color: #777;
+    margin-top: 0.3rem;
+  }
+  
+  .surprise-btn-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+  }
+  
+  .surprise-btn {
+    background: var(--highlight);
+    color: white;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  
+  .surprise-btn:hover {
+    background: #ec5aa4;
+    transform: scale(1.05);
+  }
+  

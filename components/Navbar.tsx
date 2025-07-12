@@ -41,6 +41,7 @@ export default function Navbar() {
                 <div className="dropdown">
                   <Link href="/dashboard">📂 Dashboard</Link>
                   <Link href="/item/new">🪡 Add Item</Link>
+                  <Link href="/items">🔍 Browse</Link>
                   <button onClick={handleLogout}>🚪 Logout</button>
                 </div>
               )}

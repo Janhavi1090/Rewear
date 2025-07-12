@@ -3,11 +3,17 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import "./dashboard.css";
 
+type SwapRequest = {
+  email: string;
+  status: string;
+};
+
 type Item = {
   _id: string;
   title: string;
   image: string;
   status: string;
+  swapRequests?: SwapRequest[];
 };
 
 export default function Dashboard() {
@@ -21,6 +27,7 @@ export default function Dashboard() {
   }, []);
 
   if (status === "loading") return <p className="loading">Loading session...</p>;
+
   if (!session)
     return (
       <div className="login-message">
@@ -31,8 +38,23 @@ export default function Dashboard() {
         </div>
       </div>
     );
-  
+
   const user = session.user;
+
+  const handleSwapAction = async (itemId: string, requesterEmail: string, action: string) => {
+    const res = await fetch("/api/swap-action", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ itemId, requesterEmail, action }),
+    });
+
+    const result = await res.json();
+    alert(result.message);
+    // Refresh closet after action
+    fetch("/api/items/user")
+      .then((res) => res.json())
+      .then((data) => setItems(data));
+  };
 
   return (
     <div className="dashboard-page">
@@ -61,6 +83,36 @@ export default function Dashboard() {
               <Link href={`/item/${item._id}`} className="details-link">
                 View Details →
               </Link>
+
+              {/* SWAP REQUESTS */}
+              {item.swapRequests && item.swapRequests.length > 0 && (
+                <div className="swap-requests">
+                  <h4 className="section-title">🔁 Swap Requests:</h4>
+                  {item.swapRequests.map((req) => (
+                    <div key={req.email} className="swap-request-entry">
+                      <p>📧 {req.email}</p>
+                      <p>Status: <strong>{req.status}</strong></p>
+
+                      {req.status === "pending" && item.status === "available" && (
+                        <div className="action-buttons">
+                          <button
+                            className="accept-btn"
+                            onClick={() => handleSwapAction(item._id, req.email, "accepted")}
+                          >
+                            ✅ Accept
+                          </button>
+                          <button
+                            className="reject-btn"
+                            onClick={() => handleSwapAction(item._id, req.email, "rejected")}
+                          >
+                            ❌ Reject
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>

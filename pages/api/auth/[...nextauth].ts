@@ -1,8 +1,8 @@
 // pages/api/auth/[...nextauth].ts
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { connectToDatabase } from "@/lib/mongodb";
-import User from "@/models/User";
+import connectToDatabase from "../../../lib/mongodb";
+import User from "../../../models/User";
 import bcrypt from "bcryptjs";
 import type { NextAuthOptions } from "next-auth";
 
